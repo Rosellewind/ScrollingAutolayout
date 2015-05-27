@@ -15,6 +15,7 @@
 		4A4426981A82C0A700EC3C17 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A4426961A82C0A700EC3C17 /* LaunchScreen.xib */; };
 		4A4426A41A82C0A700EC3C17 /* ScrollingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4426A31A82C0A700EC3C17 /* ScrollingTests.swift */; };
 		4A79CF291B04F46100656442 /* ResizableScrolling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A79CF281B04F46100656442 /* ResizableScrolling.swift */; };
+		4AC4DCE41B1673570026E013 /* t_Bierstadt - Rocky Mountain landscape.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4AC4DCE31B1673570026E013 /* t_Bierstadt - Rocky Mountain landscape.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,7 @@
 		4A4426A21A82C0A700EC3C17 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4A4426A31A82C0A700EC3C17 /* ScrollingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollingTests.swift; sourceTree = "<group>"; };
 		4A79CF281B04F46100656442 /* ResizableScrolling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResizableScrolling.swift; sourceTree = "<group>"; };
+		4AC4DCE31B1673570026E013 /* t_Bierstadt - Rocky Mountain landscape.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "t_Bierstadt - Rocky Mountain landscape.jpg"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 		4A4426871A82C0A700EC3C17 /* Scrolling */ = {
 			isa = PBXGroup;
 			children = (
+				4AC4DCE31B1673570026E013 /* t_Bierstadt - Rocky Mountain landscape.jpg */,
 				4A44268A1A82C0A700EC3C17 /* AppDelegate.swift */,
 				4A44268F1A82C0A700EC3C17 /* ViewController.swift */,
 				4A79CF281B04F46100656442 /* ResizableScrolling.swift */,
@@ -199,6 +202,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4A4426931A82C0A700EC3C17 /* Main.storyboard in Resources */,
+				4AC4DCE41B1673570026E013 /* t_Bierstadt - Rocky Mountain landscape.jpg in Resources */,
 				4A4426981A82C0A700EC3C17 /* LaunchScreen.xib in Resources */,
 				4A4426951A82C0A700EC3C17 /* Images.xcassets in Resources */,
 			);

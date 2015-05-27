@@ -17,8 +17,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var scrollContainer2: UIView!
     @IBOutlet weak var contentView2: UIView!
     @IBOutlet weak var scrollContainer3: UIView!
-    @IBOutlet weak var sampleView: UIView!
+    @IBOutlet weak var scrollContainer4: UIView!
+    @IBOutlet weak var scrollContainer5: UIView!
+    @IBOutlet weak var scrollContainer6: UIView!
     
+    var resizableScrolling = ResizableScrolling()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +29,9 @@ class ViewController: UIViewController {
         setupScrolling2()
         setupScrolling3()
         setupScrolling4()
+        setupScrolling5()
+        setupScrolling6()
+        
     }
 }
 
@@ -34,13 +40,10 @@ class ViewController: UIViewController {
 
 extension ViewController {
     func setupScrolling1() {
-        var resizableScrolling = ResizableScrolling()
         resizableScrolling.addPagesToScrollContainer(self.scrollContainer1, pages: resizableScrolling.sampleColorPages(), direction: RSScrollingDirection.horizontal, pagingEnabled: false)
     }
     
     func setupScrolling2() {
-        var resizableScrolling = ResizableScrolling()
-        resizableScrolling.verticalScrollingWithContainerView(self.scrollContainer2)
 //        resizableScrolling.addPagesToScrollContainer(self.scrollContainer2, pages: resizableScrolling.sampleColorPages(), direction: RSScrollingDirection.horizontal, pagingEnabled: false)
     }
     
@@ -52,12 +55,16 @@ extension ViewController {
     func setupScrolling4() {
         var resizableScrolling = ResizableScrolling()
 //        resizableScrolling.verticalScrollingWithContainerView(self.sampleView)
-        resizableScrolling.addPagesToScrollContainer(self.sampleView, pages: resizableScrolling.sampleColorPages(), direction: RSScrollingDirection.vertical, pagingEnabled: false)
+        resizableScrolling.addPagesToScrollContainer(self.scrollContainer4, pages: resizableScrolling.sampleColorPages(), direction: RSScrollingDirection.vertical, pagingEnabled: false)
     }
 }
 
-// MARK: Instructions
+// MARK: Instructions how to code dynamic layout scrolling
 /*
+
+
+
+steps 1, 2, and 3 can be done in IB, 4 programatically if desired
 
 1. add UIView named scrollContainer
     a. bind all 4 sides appropriately where you want them
@@ -67,26 +74,33 @@ extension ViewController {
 
 3. add UIView named contentView as subview to scrollView
     a. bind all sides of contentView to scrollview, (trailing, leading, bottom, top spaces = 0)
-    b. set your scrollview scrolling/paging enabled, horizontal/vertical indicators
-        i. if scrolling both horizontally and vertically, go on to step 4
-        ii. if only vertical scrolling, bind contentView “equal widths” to scrollContainer
-        iii.if only horizontal scrolling, bind contentView “equal heights” to scrollContainer
 
 4. add subviews to contentView (your content) (see below for programmatically added)
     a. bind subviews how you want them in the 4 directions
+    b. set width and height for each
         i. if scrolling all directions:
             can have space in-between subviews or a freeform layout
-        ii. if scrolling vertically:
-            no space in-between subviews
-            bind “equal widths” of subviews to scrollContainer
-        iii. if scrolling horizontally:
-            no space in-between subviews
-            bind “equal heights” of subviews to scrollContainer
+        ii. if scrolling vertically or horizontally
+            line them up one after another appropriately with H: or V:
+pagingEnabled
+            set scrubbers
 
-notes for dynamic content:
-steps 1, 2, and 3 can be done in IB
-add outlet for contentView
-if paging, add outlet for scrollContainer
-step 4 can be done programmatically for dynamic content
 
+
+visual format for vertically scrolling (swap V and H for horizontally scrolling:
+V:|scrollView|
+H:|scrollView|
+
+V:|contentView|
+H:|contentView|
+
+V:|[page1(==scrollContainer)][page2(==scrollContainer)][page3(==scrollContainer)]|
+H:|[page1(==scrollContainer)]|
+H:|[page2(==scrollContainer)]|
+H:|[page3(==scrollContainer)]|
+
+resources:
+http://stackoverflow.com/questions/13499467/uiscrollview-doesnt-use-autolayout-constraints
+http://www.apeth.com/iOSBook/ch20.html
+https://developer.apple.com/library/ios/releasenotes/General/RN-iOSSDK-6_0/index.html
 */
