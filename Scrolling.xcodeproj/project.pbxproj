@@ -14,6 +14,7 @@
 		4A4426951A82C0A700EC3C17 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A4426941A82C0A700EC3C17 /* Images.xcassets */; };
 		4A4426981A82C0A700EC3C17 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A4426961A82C0A700EC3C17 /* LaunchScreen.xib */; };
 		4A4426A41A82C0A700EC3C17 /* ScrollingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4426A31A82C0A700EC3C17 /* ScrollingTests.swift */; };
+		4A79CF291B04F46100656442 /* ResizableScrolling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A79CF281B04F46100656442 /* ResizableScrolling.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		4A44269D1A82C0A700EC3C17 /* ScrollingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScrollingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A4426A21A82C0A700EC3C17 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4A4426A31A82C0A700EC3C17 /* ScrollingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollingTests.swift; sourceTree = "<group>"; };
+		4A79CF281B04F46100656442 /* ResizableScrolling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResizableScrolling.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 			children = (
 				4A44268A1A82C0A700EC3C17 /* AppDelegate.swift */,
 				4A44268F1A82C0A700EC3C17 /* ViewController.swift */,
+				4A79CF281B04F46100656442 /* ResizableScrolling.swift */,
 				4A4426911A82C0A700EC3C17 /* Main.storyboard */,
 				4A4426941A82C0A700EC3C17 /* Images.xcassets */,
 				4A4426961A82C0A700EC3C17 /* LaunchScreen.xib */,
@@ -218,6 +221,7 @@
 				4A4426901A82C0A700EC3C17 /* ViewController.swift in Sources */,
 				4A44268B1A82C0A700EC3C17 /* AppDelegate.swift in Sources */,
 				4A44268E1A82C0A700EC3C17 /* Scrolling.xcdatamodeld in Sources */,
+				4A79CF291B04F46100656442 /* ResizableScrolling.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,6 +349,7 @@
 				INFOPLIST_FILE = Scrolling/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -355,6 +360,7 @@
 				INFOPLIST_FILE = Scrolling/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -411,6 +417,7 @@
 				4A4426A91A82C0A700EC3C17 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4A4426AA1A82C0A700EC3C17 /* Build configuration list for PBXNativeTarget "ScrollingTests" */ = {
 			isa = XCConfigurationList;
@@ -419,6 +426,7 @@
 				4A4426AC1A82C0A700EC3C17 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
