@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A3E9D611B20C27D00C30786 /* leonidAfremov.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4A3E9D601B20C27D00C30786 /* leonidAfremov.jpg */; };
 		4A44268B1A82C0A700EC3C17 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A44268A1A82C0A700EC3C17 /* AppDelegate.swift */; };
 		4A44268E1A82C0A700EC3C17 /* Scrolling.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4A44268C1A82C0A700EC3C17 /* Scrolling.xcdatamodeld */; };
 		4A4426901A82C0A700EC3C17 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A44268F1A82C0A700EC3C17 /* ViewController.swift */; };
@@ -14,8 +15,8 @@
 		4A4426951A82C0A700EC3C17 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A4426941A82C0A700EC3C17 /* Images.xcassets */; };
 		4A4426981A82C0A700EC3C17 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A4426961A82C0A700EC3C17 /* LaunchScreen.xib */; };
 		4A4426A41A82C0A700EC3C17 /* ScrollingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4426A31A82C0A700EC3C17 /* ScrollingTests.swift */; };
-		4A79CF291B04F46100656442 /* ResizableScrolling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A79CF281B04F46100656442 /* ResizableScrolling.swift */; };
-		4AC4DCE41B1673570026E013 /* t_Bierstadt - Rocky Mountain landscape.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4AC4DCE31B1673570026E013 /* t_Bierstadt - Rocky Mountain landscape.jpg */; };
+		4A79CF291B04F46100656442 /* ScrollingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A79CF281B04F46100656442 /* ScrollingHelper.swift */; };
+		4AC4DCE41B1673570026E013 /* t_Bierstadt-Rocky Mountain landscape.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4AC4DCE31B1673570026E013 /* t_Bierstadt-Rocky Mountain landscape.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +30,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4A3E9D601B20C27D00C30786 /* leonidAfremov.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = leonidAfremov.jpg; sourceTree = "<group>"; };
 		4A4426851A82C0A700EC3C17 /* Scrolling.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scrolling.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A4426891A82C0A700EC3C17 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4A44268A1A82C0A700EC3C17 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -40,8 +42,8 @@
 		4A44269D1A82C0A700EC3C17 /* ScrollingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScrollingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A4426A21A82C0A700EC3C17 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4A4426A31A82C0A700EC3C17 /* ScrollingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollingTests.swift; sourceTree = "<group>"; };
-		4A79CF281B04F46100656442 /* ResizableScrolling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResizableScrolling.swift; sourceTree = "<group>"; };
-		4AC4DCE31B1673570026E013 /* t_Bierstadt - Rocky Mountain landscape.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "t_Bierstadt - Rocky Mountain landscape.jpg"; sourceTree = "<group>"; };
+		4A79CF281B04F46100656442 /* ScrollingHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollingHelper.swift; sourceTree = "<group>"; };
+		4AC4DCE31B1673570026E013 /* t_Bierstadt-Rocky Mountain landscape.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "t_Bierstadt-Rocky Mountain landscape.jpg"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,10 +85,11 @@
 		4A4426871A82C0A700EC3C17 /* Scrolling */ = {
 			isa = PBXGroup;
 			children = (
-				4AC4DCE31B1673570026E013 /* t_Bierstadt - Rocky Mountain landscape.jpg */,
+				4AC4DCE31B1673570026E013 /* t_Bierstadt-Rocky Mountain landscape.jpg */,
+				4A3E9D601B20C27D00C30786 /* leonidAfremov.jpg */,
 				4A44268A1A82C0A700EC3C17 /* AppDelegate.swift */,
 				4A44268F1A82C0A700EC3C17 /* ViewController.swift */,
-				4A79CF281B04F46100656442 /* ResizableScrolling.swift */,
+				4A79CF281B04F46100656442 /* ScrollingHelper.swift */,
 				4A4426911A82C0A700EC3C17 /* Main.storyboard */,
 				4A4426941A82C0A700EC3C17 /* Images.xcassets */,
 				4A4426961A82C0A700EC3C17 /* LaunchScreen.xib */,
@@ -201,8 +204,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A3E9D611B20C27D00C30786 /* leonidAfremov.jpg in Resources */,
 				4A4426931A82C0A700EC3C17 /* Main.storyboard in Resources */,
-				4AC4DCE41B1673570026E013 /* t_Bierstadt - Rocky Mountain landscape.jpg in Resources */,
+				4AC4DCE41B1673570026E013 /* t_Bierstadt-Rocky Mountain landscape.jpg in Resources */,
 				4A4426981A82C0A700EC3C17 /* LaunchScreen.xib in Resources */,
 				4A4426951A82C0A700EC3C17 /* Images.xcassets in Resources */,
 			);
@@ -225,7 +229,7 @@
 				4A4426901A82C0A700EC3C17 /* ViewController.swift in Sources */,
 				4A44268B1A82C0A700EC3C17 /* AppDelegate.swift in Sources */,
 				4A44268E1A82C0A700EC3C17 /* Scrolling.xcdatamodeld in Sources */,
-				4A79CF291B04F46100656442 /* ResizableScrolling.swift in Sources */,
+				4A79CF291B04F46100656442 /* ScrollingHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
