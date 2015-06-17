@@ -6,6 +6,9 @@
 //  Copyright (c) 2015 Roselle Tanner. All rights reserved.
 //
 
+// ************* if changes are made, update Scrolling project *************
+
+
 import Foundation
 import UIKit
 
@@ -97,13 +100,13 @@ extension ScrollingHelper {
     }
     
     func setupScrollingForImage(scrollContainer: UIView, imageName: String) -> (scrollView: UIScrollView, imageView: UIImageView) {
-
+        
         let imageView = UIImageView(image: UIImage(named: imageName))
         let scrollView = setupScrollingForView(scrollContainer, view: imageView)
         return (scrollView, imageView)
     }
     
-    func setupScrollingForPages(scrollContainer: UIView, pages: [UIView], direction: RSScrollingDirection, pagingEnabled: Bool) -> (scrollView: UIScrollView, contentView: UIView){
+    func setupScrollingForPages(scrollContainer: UIView, pages: [UIView], direction: RSScrollingDirection, pagingEnabled: Bool) -> (scrollView: UIScrollView, contentView: UIView, pages: [UIView]){
         var scrollView = addScrollViewToContainerAndBind(scrollContainer, pagingEnabled: pagingEnabled)
         var contentView = addContentViewToScrollViewAndBind(scrollView, contentView: nil)
         
@@ -111,17 +114,17 @@ extension ScrollingHelper {
         case .horizontal:
             scrollView.showsHorizontalScrollIndicator = true
             scrollView.showsVerticalScrollIndicator = false
-            addPagesToContentViewAndBind(scrollContainer, contentView: contentView, pages: pages, direction: direction)
+            addPagesToContentViewAndBind(scrollContainer, scrollView: scrollView, contentView: contentView, pages: pages, direction: direction)
         case .vertical:
             scrollView.showsHorizontalScrollIndicator = false
             scrollView.showsVerticalScrollIndicator = true
-            addPagesToContentViewAndBind(scrollContainer, contentView: contentView, pages: pages, direction: direction)
+            addPagesToContentViewAndBind(scrollContainer, scrollView: scrollView, contentView: contentView, pages: pages, direction: direction)
         default:
             scrollView.showsHorizontalScrollIndicator = true
             scrollView.showsVerticalScrollIndicator = true
-            addPagesToContentViewAndBind(scrollContainer, contentView: contentView, pages: pages, direction: direction)
+            addPagesToContentViewAndBind(scrollContainer, scrollView: scrollView, contentView: contentView, pages: pages, direction: direction)
         }
-        return (scrollView, contentView)
+        return (scrollView, contentView, pages)
     }
 }
 
@@ -132,11 +135,11 @@ extension ScrollingHelper {
     func addScrollViewToContainerAndBind(scrollContainer: UIView, pagingEnabled: Bool) ->  UIScrollView {
         
         // add a scrollView as subview to scrollContainer
-        let scrollView = UIScrollView()
+        let scrollView = RotatingScrollView()
         scrollContainer.addSubview(scrollView)
         scrollView.setTranslatesAutoresizingMaskIntoConstraints(false)  // don't forget this!
         scrollView.pagingEnabled = pagingEnabled
-
+        
         
         // bind all sides of scrollView to its superview (scrollContainer)
         let viewsDictionary = ["scrollView" : scrollView]
@@ -153,7 +156,7 @@ extension ScrollingHelper {
         if thisContentView == nil {
             thisContentView = UIView()
         }
-
+        
         // add contentView as subview to scrollView
         thisContentView.setTranslatesAutoresizingMaskIntoConstraints(false) // don't forget this!
         scrollView.addSubview(thisContentView)
@@ -162,11 +165,16 @@ extension ScrollingHelper {
         let viewsDictionary = ["contentView" : thisContentView]
         scrollView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[contentView]|", options: NSLayoutFormatOptions.DirectionLeadingToTrailing, metrics: nil, views: viewsDictionary))
         scrollView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[contentView]|", options: NSLayoutFormatOptions.DirectionLeadingToTrailing, metrics: nil, views: viewsDictionary))
-
+        
         return thisContentView
     }
- 
-    func addPagesToContentViewAndBind(scrollContainer: UIView, contentView: UIView, pages: [UIView], direction: RSScrollingDirection) {
+    
+    func addPagesToContentViewAndBind(scrollContainer: UIView, scrollView: UIScrollView, contentView: UIView, pages: [UIView], direction: RSScrollingDirection) {
+        
+        if contentView.subviews.count > 1 {
+            contentView.removeFromSuperview()
+            addContentViewToScrollViewAndBind(scrollView, contentView: contentView)
+        }
         
         for i in 0..<pages.count {
             
@@ -189,7 +197,7 @@ extension ScrollingHelper {
             // H:|[view3(==scrollContainer)]|
             
             var viewsDictionary = ["scrollContainer" : scrollContainer, "contentView" : contentView, "page" : page]
-
+            
             if i == 0 {                 // first page
                 // this constrains page leading edge to its superview(contentView), equal widths with scrollContainer
                 scrollContainer.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(prefix + "|[page(==scrollContainer)]", options: NSLayoutFormatOptions.DirectionLeadingToTrailing, metrics: nil, views: viewsDictionary))
@@ -209,12 +217,44 @@ extension ScrollingHelper {
             // this constrains pages top edge to its superview(contentView) and height to scrollContainer
             scrollContainer.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(prefixOpposite + "|[page(==scrollContainer)]|", options: NSLayoutFormatOptions.DirectionLeadingToTrailing, metrics: nil, views: viewsDictionary))
         }
-        
     }
-    
+}
 
+class RotatingScrollView: UIScrollView {
     
+    override func layoutSubviews() {
+        
+        //before laying out subviews, content size is the only thing different
+        let contentSize = self.contentSize
+        
+        //layout subviews, may have rotated
+        super.layoutSubviews()
+        
+        //after laying out subviews
+        let newContentSize = self.contentSize
+        
+        
+        //if the contentSize has changed, update the contentOffset proportionally
+        var x: CGFloat = 0
+        var y: CGFloat = 0
+        let offset = self.contentOffset
 
+        let scrollingHorizontally = offset.x != 0
+        let scrollingVertically = offset.y != 0
+        if scrollingHorizontally{
+            let widthChanged = contentSize.width > 0 && (contentSize.width != newContentSize.width)
+            if widthChanged {
+                x = floor(offset.x * newContentSize.width)/contentSize.width
+                self.setContentOffset(CGPoint(x: x, y: 0.0), animated: false)
+            }
+        } else if scrollingVertically {
+            let heightChanged = contentSize.height > 0 && contentSize.height != newContentSize.height
+            if heightChanged {
+                y = floor(offset.x * newContentSize.height)/contentSize.height
+                self.setContentOffset(CGPoint(x: x, y: 0.0), animated: false)
+            }
+        }
+    }
 }
 
 
@@ -256,5 +296,3 @@ http://stackoverflow.com/questions/13499467/uiscrollview-doesnt-use-autolayout-c
 http://www.apeth.com/iOSBook/ch20.html
 https://developer.apple.com/library/ios/releasenotes/General/RN-iOSSDK-6_0/index.html
 */
-
-
