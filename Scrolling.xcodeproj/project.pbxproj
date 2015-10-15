@@ -168,6 +168,8 @@
 		4A44267D1A82C0A700EC3C17 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "Roselle Tanner";
 				TargetAttributes = {

@@ -53,12 +53,12 @@ extension ViewController {
     
     func setupScrolling4() {
         let strings = ["opened at 3:15", "tapped at 4:15", "opened at 5:45"]
-        scrollingHelper.setupScrollingForPages(self.scrollContainer4, pages: scrollingHelper.arrayOfLabelsForStrings(strings, font:nil), direction: RSScrollingDirection.horizontal, pagingEnabled: true)
+        scrollingHelper.setupScrollingForPages(self.scrollContainer4, pages: scrollingHelper.arrayOfLabelsForStrings(strings, font:nil), direction: RSScrollingDirection.vertical, pagingEnabled: false)
 //        scrollingHelper.setupScrollingForPages(self.scrollContainer4, pages: scrollingHelper.sampleColorPages(), direction: RSScrollingDirection.horizontal, pagingEnabled: false)
     }
     
     func setupScrolling5() {
-    scrollingHelper.setupScrollingForImage(self.scrollContainer5, imageName:"dontknowartist.jpg")
+    scrollingHelper.setupScrollingForImage(self.scrollContainer5, imageName:"leonidAfremov.jpg")
     }
     
     func setupScrolling6() {

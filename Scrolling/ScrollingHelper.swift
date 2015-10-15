@@ -34,7 +34,7 @@ extension ScrollingHelper {
     func arrayOfTextViewsForStrings(strings: [String]) -> [UIView] {
         var textViewArray: [UITextView] = []
         for string in strings {
-            var textView = UITextView()
+            let textView = UITextView()
             textView.text = string
             textView.textAlignment = NSTextAlignment.Center
             textViewArray.append(textView)
@@ -50,7 +50,7 @@ extension ScrollingHelper {
             thisFont = UIFont(name: "arial", size: 100)
         }
         for string in strings {
-            var label = UILabel()
+            let label = UILabel()
             label.text = string
             label.textAlignment = NSTextAlignment.Center
             label.adjustsFontSizeToFitWidth = true
@@ -75,7 +75,7 @@ extension ScrollingHelper {
         
         for i in 0..<colors.count {
             let color = colors[i]
-            var colorView = UIView()
+            let colorView = UIView()
             colorView.backgroundColor = color
             colorViews.append(colorView)
         }
@@ -107,8 +107,8 @@ extension ScrollingHelper {
     }
     
     func setupScrollingForPages(scrollContainer: UIView, pages: [UIView], direction: RSScrollingDirection, pagingEnabled: Bool) -> (scrollView: UIScrollView, contentView: UIView, pages: [UIView]){
-        var scrollView = addScrollViewToContainerAndBind(scrollContainer, pagingEnabled: pagingEnabled)
-        var contentView = addContentViewToScrollViewAndBind(scrollView, contentView: nil)
+        let scrollView = addScrollViewToContainerAndBind(scrollContainer, pagingEnabled: pagingEnabled)
+        let contentView = addContentViewToScrollViewAndBind(scrollView, contentView: nil)
         
         switch (direction) {
         case .horizontal:
@@ -137,7 +137,7 @@ extension ScrollingHelper {
         // add a scrollView as subview to scrollContainer
         let scrollView = RotatingScrollView()
         scrollContainer.addSubview(scrollView)
-        scrollView.setTranslatesAutoresizingMaskIntoConstraints(false)  // don't forget this!
+        scrollView.translatesAutoresizingMaskIntoConstraints = false  // don't forget this!
         scrollView.pagingEnabled = pagingEnabled
         
         
@@ -158,7 +158,7 @@ extension ScrollingHelper {
         }
         
         // add contentView as subview to scrollView
-        thisContentView.setTranslatesAutoresizingMaskIntoConstraints(false) // don't forget this!
+        thisContentView.translatesAutoresizingMaskIntoConstraints = false // don't forget this!
         scrollView.addSubview(thisContentView)
         
         // bind all sides of contentView to its superview (scrollView)
@@ -181,7 +181,7 @@ extension ScrollingHelper {
             // add the pages as subviews to contentview
             let page = pages[i]
             contentView.addSubview(page)
-            page.setTranslatesAutoresizingMaskIntoConstraints(false)    // don't forget this!
+            page.translatesAutoresizingMaskIntoConstraints = false    // don't forget this!
             
             var prefix = "V:"
             var prefixOpposite = "H:"
@@ -238,21 +238,37 @@ class RotatingScrollView: UIScrollView {
         var x: CGFloat = 0
         var y: CGFloat = 0
         let offset = self.contentOffset
-
-        let scrollingHorizontally = offset.x != 0
-        let scrollingVertically = offset.y != 0
-        if scrollingHorizontally{
-            let widthChanged = contentSize.width > 0 && (contentSize.width != newContentSize.width)
-            if widthChanged {
-                x = floor(offset.x * newContentSize.width)/contentSize.width
-                self.setContentOffset(CGPoint(x: x, y: 0.0), animated: false)
-            }
-        } else if scrollingVertically {
-            let heightChanged = contentSize.height > 0 && contentSize.height != newContentSize.height
-            if heightChanged {
-                y = floor(offset.x * newContentSize.height)/contentSize.height
-                self.setContentOffset(CGPoint(x: x, y: 0.0), animated: false)
-            }
+        
+        let widthChanged = contentSize.width > 0 && (contentSize.width != newContentSize.width)
+        if widthChanged {
+            x = (offset.x * newContentSize.width)/contentSize.width
+        }
+        let heightChanged = contentSize.height > 0 && contentSize.height != newContentSize.height
+        if heightChanged {
+            y = (offset.y * newContentSize.height)/contentSize.height
+        }
+        
+        if (widthChanged || heightChanged) && (offset.x != x || offset.y != y) {
+            let newOffset = CGPoint(x: 300, y: y)
+            self.setContentOffset(newOffset, animated: false)
+        print("oldOffset:\(offset) newOffset:\(newOffset) \(self.contentOffset)")
+            
+            //218.0, 120.5
+//
+//        let scrollingHorizontally = offset.x != 0
+//        let scrollingVertically = offset.y != 0
+//        if scrollingHorizontally{
+//            let widthChanged = contentSize.width > 0 && (contentSize.width != newContentSize.width)
+//            if widthChanged {
+//                x = floor(offset.x * newContentSize.width)/contentSize.width
+//                self.setContentOffset(CGPoint(x: x, y: 0.0), animated: false)
+//            }
+//        } else if scrollingVertically {
+//            let heightChanged = contentSize.height > 0 && contentSize.height != newContentSize.height
+//            if heightChanged {
+//                y = floor(offset.x * newContentSize.height)/contentSize.height
+//                self.setContentOffset(CGPoint(x: x, y: 0.0), animated: false)
+//            }
         }
     }
 }
