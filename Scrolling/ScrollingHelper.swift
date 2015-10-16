@@ -7,6 +7,8 @@
 //
 
 // ************* if changes are made, update Scrolling project *************
+// working on: for michelle, multilinelabels
+                //autorotation, where it left off
 
 
 import Foundation
@@ -47,7 +49,7 @@ extension ScrollingHelper {
         var labelArray: [UILabel] = []
         var thisFont = font
         if thisFont == nil {
-            thisFont = UIFont(name: "arial", size: 100)
+            thisFont = UIFont(name: "arial", size: 8)
         }
         for string in strings {
             let label = UILabel()
@@ -57,6 +59,9 @@ extension ScrollingHelper {
             label.font = thisFont
             label.minimumScaleFactor = 10/label.font.pointSize
             label.baselineAdjustment = UIBaselineAdjustment.AlignCenters
+            label.numberOfLines = 0
+            label.lineBreakMode = NSLineBreakMode.ByWordWrapping
+            
             labelArray.append(label)
         }
         return labelArray
@@ -94,7 +99,7 @@ extension ScrollingHelper {
         let scrollView = addScrollViewToContainerAndBind(scrollContainer, pagingEnabled: false)
         
         // add an imageView and bind all sides
-        var contentView = addContentViewToScrollViewAndBind(scrollView, contentView: view)
+        addContentViewToScrollViewAndBind(scrollView, contentView: view)
         
         return scrollView
     }
@@ -106,7 +111,9 @@ extension ScrollingHelper {
         return (scrollView, imageView)
     }
     
-    func setupScrollingForPages(scrollContainer: UIView, pages: [UIView], direction: RSScrollingDirection, pagingEnabled: Bool) -> (scrollView: UIScrollView, contentView: UIView, pages: [UIView]){
+    func setupScrollingForViews(scrollContainer: UIView, views: [UIView], direction: RSScrollingDirection, pagingEnabled: Bool, oneViewPerPage: Bool) -> (scrollView: UIScrollView, contentView: UIView, views: [UIView]){
+        //much of this is duplicated code from setupScrollingForPages, just added onePerPage as this class was originally intended to use pages and the documentation is clearer to leave it be.
+        
         let scrollView = addScrollViewToContainerAndBind(scrollContainer, pagingEnabled: pagingEnabled)
         let contentView = addContentViewToScrollViewAndBind(scrollView, contentView: nil)
         
@@ -114,15 +121,37 @@ extension ScrollingHelper {
         case .horizontal:
             scrollView.showsHorizontalScrollIndicator = true
             scrollView.showsVerticalScrollIndicator = false
-            addPagesToContentViewAndBind(scrollContainer, scrollView: scrollView, contentView: contentView, pages: pages, direction: direction)
+            addPagesToContentViewAndBind(scrollContainer, scrollView: scrollView, contentView: contentView, pages: views, direction: direction, onePerPage: oneViewPerPage)
         case .vertical:
             scrollView.showsHorizontalScrollIndicator = false
             scrollView.showsVerticalScrollIndicator = true
-            addPagesToContentViewAndBind(scrollContainer, scrollView: scrollView, contentView: contentView, pages: pages, direction: direction)
+            addPagesToContentViewAndBind(scrollContainer, scrollView: scrollView, contentView: contentView, pages: views, direction: direction, onePerPage: oneViewPerPage)
         default:
             scrollView.showsHorizontalScrollIndicator = true
             scrollView.showsVerticalScrollIndicator = true
-            addPagesToContentViewAndBind(scrollContainer, scrollView: scrollView, contentView: contentView, pages: pages, direction: direction)
+            addPagesToContentViewAndBind(scrollContainer, scrollView: scrollView, contentView: contentView, pages: views, direction: direction, onePerPage: oneViewPerPage)
+        }
+        return (scrollView, contentView, views)
+    }
+    
+    func setupScrollingForPages(scrollContainer: UIView, pages: [UIView], direction: RSScrollingDirection, pagingEnabled: Bool) -> (scrollView: UIScrollView, contentView: UIView, pages: [UIView]){
+
+        let scrollView = addScrollViewToContainerAndBind(scrollContainer, pagingEnabled: pagingEnabled)
+        let contentView = addContentViewToScrollViewAndBind(scrollView, contentView: nil)
+        
+        switch (direction) {
+        case .horizontal:
+            scrollView.showsHorizontalScrollIndicator = true
+            scrollView.showsVerticalScrollIndicator = false
+            addPagesToContentViewAndBind(scrollContainer, scrollView: scrollView, contentView: contentView, pages: pages, direction: direction, onePerPage: true)
+        case .vertical:
+            scrollView.showsHorizontalScrollIndicator = false
+            scrollView.showsVerticalScrollIndicator = true
+            addPagesToContentViewAndBind(scrollContainer, scrollView: scrollView, contentView: contentView, pages: pages, direction: direction, onePerPage: true)
+        default:
+            scrollView.showsHorizontalScrollIndicator = true
+            scrollView.showsVerticalScrollIndicator = true
+            addPagesToContentViewAndBind(scrollContainer, scrollView: scrollView, contentView: contentView, pages: pages, direction: direction, onePerPage: true)
         }
         return (scrollView, contentView, pages)
     }
@@ -169,7 +198,8 @@ extension ScrollingHelper {
         return thisContentView
     }
     
-    func addPagesToContentViewAndBind(scrollContainer: UIView, scrollView: UIScrollView, contentView: UIView, pages: [UIView], direction: RSScrollingDirection) {
+    func addPagesToContentViewAndBind(scrollContainer: UIView, scrollView: UIScrollView, contentView: UIView, pages: [UIView], direction: RSScrollingDirection, onePerPage: Bool) {
+        // onePerPage was added later, if !onePerPage stacked views of undetermined length are used instead of pages
         
         if contentView.subviews.count > 1 {
             contentView.removeFromSuperview()
@@ -189,7 +219,10 @@ extension ScrollingHelper {
                 prefix = "H:"
                 prefixOpposite = "V:"
             }
+            let firstPageVisualFormat = prefix + (onePerPage ? "|[page(==scrollContainer)]" : "|[page]")
+            let middlePagesVisualFormat = prefix + (onePerPage ? "[previousPage][page(==scrollContainer)]" : "[previousPage][page]")
             
+            let lastPageVisualFormat = prefix + "[page]|"
             // example of vertical scrolling visual format
             // V:|[page1(==scrollContainer)][page2(==scrollContainer)][page3(==scrollContainer)]|
             // H:|[view1(==scrollContainer)]|
@@ -197,21 +230,22 @@ extension ScrollingHelper {
             // H:|[view3(==scrollContainer)]|
             
             var viewsDictionary = ["scrollContainer" : scrollContainer, "contentView" : contentView, "page" : page]
+
             
             if i == 0 {                 // first page
                 // this constrains page leading edge to its superview(contentView), equal widths with scrollContainer
-                scrollContainer.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(prefix + "|[page(==scrollContainer)]", options: NSLayoutFormatOptions.DirectionLeadingToTrailing, metrics: nil, views: viewsDictionary))
+                scrollContainer.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(firstPageVisualFormat, options: NSLayoutFormatOptions.DirectionLeadingToTrailing, metrics: nil, views: viewsDictionary))
             } else {                    // middle pages
                 // this constrains horizontal spacing between pages to 0, equal widths with scrollContainer
                 let previousPage = pages[i-1]
                 viewsDictionary["previousPage"] = previousPage
-                scrollContainer.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(prefix + "[previousPage][page(==scrollContainer)]", options: NSLayoutFormatOptions.DirectionLeadingToTrailing, metrics: nil, views: viewsDictionary))
+                scrollContainer.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(middlePagesVisualFormat, options: NSLayoutFormatOptions.DirectionLeadingToTrailing, metrics: nil, views: viewsDictionary))
                 
             }
             
             if i == pages.count - 1 {   // last page
                 // this constrains last page's trailing edge to its superview(contentView)
-                contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(prefix + "[page]|", options: NSLayoutFormatOptions.DirectionLeadingToTrailing, metrics: nil, views: viewsDictionary))
+                contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(lastPageVisualFormat, options: NSLayoutFormatOptions.DirectionLeadingToTrailing, metrics: nil, views: viewsDictionary))
             }
             
             // this constrains pages top edge to its superview(contentView) and height to scrollContainer
