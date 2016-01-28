@@ -69,7 +69,32 @@ extension ViewController {
         let strings = ["opened at 3:15", "tapped at 4:15", "opened at 5:45"]
         scrollingHelper.setupScrollingForPages(self.scrollContainer6, pages: scrollingHelper.arrayOfLabelsForStrings(strings, font:nil), direction: RSScrollingDirection.horizontal, pagingEnabled: true)
     }
+    func getScrollViews(view: UIView) -> [UIScrollView]{
+        var scrollViews = [UIScrollView]()
+        if view.isKindOfClass(UIScrollView) {
+            scrollViews.append(view as! UIScrollView)
+        }
+        view.subviews.forEach { (subview: UIView) -> () in
+            scrollViews += self.getScrollViews(subview)
+        }
+        return scrollViews
+    }
+
+    
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-        
+        // for all subviews that are UIScrollView, adjust offset
+        let scrollViews = self.getScrollViews(self.view)
+        scrollViews.forEach { (scrollView: UIScrollView) -> () in
+            if scrollView.bounds.width > 0 && scrollView.bounds.height > 0 {
+
+                let xRatio = scrollView.contentOffset.x / scrollView.bounds.width
+                let yRatio = scrollView.contentOffset.y / scrollView.bounds.height
+                print("contentOffset: \(scrollView.contentOffset) xRatio: \(xRatio) yRatio: \(yRatio)")
+
+                coordinator.animateAlongsideTransition({ (UIViewControllerTransitionCoordinatorContext) -> Void in
+                    scrollView.contentOffset = CGPoint(x: xRatio * scrollView.bounds.width, y: yRatio * scrollView.bounds.height)
+                    }, completion: nil)
+            }
+        }
     }
 }
