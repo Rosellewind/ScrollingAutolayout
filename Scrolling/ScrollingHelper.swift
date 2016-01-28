@@ -135,7 +135,7 @@ extension ScrollingHelper {
     }
     
     func setupScrollingForPages(scrollContainer: UIView, pages: [UIView], direction: RSScrollingDirection, pagingEnabled: Bool) -> (scrollView: UIScrollView, contentView: UIView, pages: [UIView]){
-
+        
         let scrollView = addScrollViewToContainerAndBind(scrollContainer, pagingEnabled: pagingEnabled)
         let contentView = addContentViewToScrollViewAndBind(scrollView, contentView: nil)
         
@@ -169,7 +169,7 @@ extension ScrollingHelper {
         scrollView.translatesAutoresizingMaskIntoConstraints = false  // don't forget this!v        scrollView.pagingEnabled = pagingEnabled
         
         // bind all sides of scrollView to its superview (scrollContainer)
-        scrollContainer.addConstraints(NSLayoutConstraint.constraintsToBindTopBottomLeftRight(scrollView))
+        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsToBindTopBottomLeftRight(scrollView))
 
         
         return scrollView
@@ -188,7 +188,7 @@ extension ScrollingHelper {
         scrollView.addSubview(thisContentView)
         
         // bind all sides of contentView to its superview (scrollView)
-        scrollView.addConstraints(NSLayoutConstraint.constraintsToBindTopBottomLeftRight(thisContentView))
+        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsToBindTopBottomLeftRight(thisContentView))
         
         return thisContentView
     }
