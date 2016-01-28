@@ -17,6 +17,7 @@
 		4A4426A41A82C0A700EC3C17 /* ScrollingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4426A31A82C0A700EC3C17 /* ScrollingTests.swift */; };
 		4A79CF291B04F46100656442 /* ScrollingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A79CF281B04F46100656442 /* ScrollingHelper.swift */; };
 		4AC4DCE41B1673570026E013 /* t_Bierstadt-Rocky Mountain landscape.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4AC4DCE31B1673570026E013 /* t_Bierstadt-Rocky Mountain landscape.jpg */; };
+		4ADAA80D1C59541E00CA43D6 /* Swift Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADAA80C1C59541E00CA43D6 /* Swift Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		4A4426A31A82C0A700EC3C17 /* ScrollingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollingTests.swift; sourceTree = "<group>"; };
 		4A79CF281B04F46100656442 /* ScrollingHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollingHelper.swift; sourceTree = "<group>"; };
 		4AC4DCE31B1673570026E013 /* t_Bierstadt-Rocky Mountain landscape.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "t_Bierstadt-Rocky Mountain landscape.jpg"; sourceTree = "<group>"; };
+		4ADAA80C1C59541E00CA43D6 /* Swift Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Swift Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +92,7 @@
 				4A44268A1A82C0A700EC3C17 /* AppDelegate.swift */,
 				4A44268F1A82C0A700EC3C17 /* ViewController.swift */,
 				4A79CF281B04F46100656442 /* ScrollingHelper.swift */,
+				4ADAA80C1C59541E00CA43D6 /* Swift Extensions.swift */,
 				4A4426911A82C0A700EC3C17 /* Main.storyboard */,
 				4A4426941A82C0A700EC3C17 /* Images.xcassets */,
 				4A4426961A82C0A700EC3C17 /* LaunchScreen.xib */,
@@ -175,6 +178,7 @@
 				TargetAttributes = {
 					4A4426841A82C0A700EC3C17 = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = N5W8253H8H;
 					};
 					4A44269C1A82C0A700EC3C17 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -231,6 +235,7 @@
 				4A4426901A82C0A700EC3C17 /* ViewController.swift in Sources */,
 				4A44268B1A82C0A700EC3C17 /* AppDelegate.swift in Sources */,
 				4A44268E1A82C0A700EC3C17 /* Scrolling.xcdatamodeld in Sources */,
+				4ADAA80D1C59541E00CA43D6 /* Swift Extensions.swift in Sources */,
 				4A79CF291B04F46100656442 /* ScrollingHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -356,9 +361,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Scrolling/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -367,9 +375,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Scrolling/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

@@ -7,7 +7,7 @@
 //
 
 // ************* if changes are made, update Scrolling project *************
-// working on: for michelle, multilinelabels
+// update addConstraint
                 //autorotation, where it left off
 
 
@@ -160,20 +160,17 @@ extension ScrollingHelper {
 
 // MARK: Meat of the class
 
-extension ScrollingHelper {
+extension ScrollingHelper {    
     func addScrollViewToContainerAndBind(scrollContainer: UIView, pagingEnabled: Bool) ->  UIScrollView {
         
         // add a scrollView as subview to scrollContainer
-        let scrollView = RotatingScrollView()
+        let scrollView = UIScrollView()
         scrollContainer.addSubview(scrollView)
-        scrollView.translatesAutoresizingMaskIntoConstraints = false  // don't forget this!
-        scrollView.pagingEnabled = pagingEnabled
-        
+        scrollView.translatesAutoresizingMaskIntoConstraints = false  // don't forget this!v        scrollView.pagingEnabled = pagingEnabled
         
         // bind all sides of scrollView to its superview (scrollContainer)
-        let viewsDictionary = ["scrollView" : scrollView]
-        scrollContainer.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[scrollView]|", options: NSLayoutFormatOptions.DirectionLeadingToTrailing, metrics: nil, views: viewsDictionary))
-        scrollContainer.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[scrollView]|", options: NSLayoutFormatOptions.DirectionLeadingToTrailing, metrics: nil, views: viewsDictionary))
+        scrollContainer.addConstraints(NSLayoutConstraint.constraintsToBindTopBottomLeftRight(scrollView))
+
         
         return scrollView
     }
@@ -191,9 +188,7 @@ extension ScrollingHelper {
         scrollView.addSubview(thisContentView)
         
         // bind all sides of contentView to its superview (scrollView)
-        let viewsDictionary = ["contentView" : thisContentView]
-        scrollView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[contentView]|", options: NSLayoutFormatOptions.DirectionLeadingToTrailing, metrics: nil, views: viewsDictionary))
-        scrollView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[contentView]|", options: NSLayoutFormatOptions.DirectionLeadingToTrailing, metrics: nil, views: viewsDictionary))
+        scrollView.addConstraints(NSLayoutConstraint.constraintsToBindTopBottomLeftRight(thisContentView))
         
         return thisContentView
     }
@@ -206,6 +201,7 @@ extension ScrollingHelper {
             addContentViewToScrollViewAndBind(scrollView, contentView: contentView)
         }
         
+        
         for i in 0..<pages.count {
             
             // add the pages as subviews to contentview
@@ -213,99 +209,24 @@ extension ScrollingHelper {
             contentView.addSubview(page)
             page.translatesAutoresizingMaskIntoConstraints = false    // don't forget this!
             
-            var prefix = "V:"
-            var prefixOpposite = "H:"
+            // tring this out
+            NSLayoutConstraint.activateConstraints([NSLayoutConstraint.constraintToKeepEqualWidth(page, view2: scrollContainer)])
+            NSLayoutConstraint.activateConstraints([NSLayoutConstraint.constraintToKeepEqualHeight(page, view2: scrollContainer)])
             if direction == RSScrollingDirection.horizontal {
-                prefix = "H:"
-                prefixOpposite = "V:"
+                NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsToBindTopBottom(page))
+            } else {
+                NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsToBindLeftRight(page))
             }
-            let firstPageVisualFormat = prefix + (onePerPage ? "|[page(==scrollContainer)]" : "|[page]")
-            let middlePagesVisualFormat = prefix + (onePerPage ? "[previousPage][page(==scrollContainer)]" : "[previousPage][page]")
+        }
+        if direction == RSScrollingDirection.horizontal {
+            NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsToBindViewsOneAfterAnother(pages, horizontalNotVertical: true))
+        } else {
+            NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsToBindViewsOneAfterAnother(pages, horizontalNotVertical: false))
             
-            let lastPageVisualFormat = prefix + "[page]|"
-            // example of vertical scrolling visual format
-            // V:|[page1(==scrollContainer)][page2(==scrollContainer)][page3(==scrollContainer)]|
-            // H:|[view1(==scrollContainer)]|
-            // H:|[view2(==scrollContainer)]|
-            // H:|[view3(==scrollContainer)]|
-            
-            var viewsDictionary = ["scrollContainer" : scrollContainer, "contentView" : contentView, "page" : page]
-
-            
-            if i == 0 {                 // first page
-                // this constrains page leading edge to its superview(contentView), equal widths with scrollContainer
-                scrollContainer.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(firstPageVisualFormat, options: NSLayoutFormatOptions.DirectionLeadingToTrailing, metrics: nil, views: viewsDictionary))
-            } else {                    // middle pages
-                // this constrains horizontal spacing between pages to 0, equal widths with scrollContainer
-                let previousPage = pages[i-1]
-                viewsDictionary["previousPage"] = previousPage
-                scrollContainer.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(middlePagesVisualFormat, options: NSLayoutFormatOptions.DirectionLeadingToTrailing, metrics: nil, views: viewsDictionary))
-                
-            }
-            
-            if i == pages.count - 1 {   // last page
-                // this constrains last page's trailing edge to its superview(contentView)
-                contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(lastPageVisualFormat, options: NSLayoutFormatOptions.DirectionLeadingToTrailing, metrics: nil, views: viewsDictionary))
-            }
-            
-            // this constrains pages top edge to its superview(contentView) and height to scrollContainer
-            scrollContainer.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(prefixOpposite + "|[page(==scrollContainer)]|", options: NSLayoutFormatOptions.DirectionLeadingToTrailing, metrics: nil, views: viewsDictionary))
         }
     }
 }
 
-class RotatingScrollView: UIScrollView {
-    
-    override func layoutSubviews() {
-        
-        //before laying out subviews, content size is the only thing different
-        let contentSize = self.contentSize
-        
-        //layout subviews, may have rotated
-        super.layoutSubviews()
-        
-        //after laying out subviews
-        let newContentSize = self.contentSize
-        
-        
-        //if the contentSize has changed, update the contentOffset proportionally
-        var x: CGFloat = 0
-        var y: CGFloat = 0
-        let offset = self.contentOffset
-        
-        let widthChanged = contentSize.width > 0 && (contentSize.width != newContentSize.width)
-        if widthChanged {
-            x = (offset.x * newContentSize.width)/contentSize.width
-        }
-        let heightChanged = contentSize.height > 0 && contentSize.height != newContentSize.height
-        if heightChanged {
-            y = (offset.y * newContentSize.height)/contentSize.height
-        }
-        
-        if (widthChanged || heightChanged) && (offset.x != x || offset.y != y) {
-            let newOffset = CGPoint(x: 300, y: y)
-            self.setContentOffset(newOffset, animated: false)
-        print("oldOffset:\(offset) newOffset:\(newOffset) \(self.contentOffset)")
-            
-            //218.0, 120.5
-//
-//        let scrollingHorizontally = offset.x != 0
-//        let scrollingVertically = offset.y != 0
-//        if scrollingHorizontally{
-//            let widthChanged = contentSize.width > 0 && (contentSize.width != newContentSize.width)
-//            if widthChanged {
-//                x = floor(offset.x * newContentSize.width)/contentSize.width
-//                self.setContentOffset(CGPoint(x: x, y: 0.0), animated: false)
-//            }
-//        } else if scrollingVertically {
-//            let heightChanged = contentSize.height > 0 && contentSize.height != newContentSize.height
-//            if heightChanged {
-//                y = floor(offset.x * newContentSize.height)/contentSize.height
-//                self.setContentOffset(CGPoint(x: x, y: 0.0), animated: false)
-//            }
-        }
-    }
-}
 
 
 // MARK: Instructions how to code dynamic layout scrolling
@@ -330,11 +251,11 @@ line them up one after another appropriately with H: or V:
 
 
 visual format for vertically scrolling (swap V and H for horizontally scrolling:
-V:|scrollView|
-H:|scrollView|
+V:|[scrollView]|
+H:|[scrollView]|
 
-V:|contentView|
-H:|contentView|
+V:|[contentView]|
+H:|[contentView]|
 
 V:|[page1(==scrollContainer)][page2(==scrollContainer)][page3(==scrollContainer)]|
 H:|[page1(==scrollContainer)]|
