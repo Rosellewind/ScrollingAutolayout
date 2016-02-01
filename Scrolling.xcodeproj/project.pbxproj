@@ -9,54 +9,33 @@
 /* Begin PBXBuildFile section */
 		4A3E9D611B20C27D00C30786 /* leonidAfremov.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4A3E9D601B20C27D00C30786 /* leonidAfremov.jpg */; };
 		4A44268B1A82C0A700EC3C17 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A44268A1A82C0A700EC3C17 /* AppDelegate.swift */; };
-		4A44268E1A82C0A700EC3C17 /* Scrolling.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4A44268C1A82C0A700EC3C17 /* Scrolling.xcdatamodeld */; };
 		4A4426901A82C0A700EC3C17 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A44268F1A82C0A700EC3C17 /* ViewController.swift */; };
 		4A4426931A82C0A700EC3C17 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A4426911A82C0A700EC3C17 /* Main.storyboard */; };
 		4A4426951A82C0A700EC3C17 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A4426941A82C0A700EC3C17 /* Images.xcassets */; };
 		4A4426981A82C0A700EC3C17 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A4426961A82C0A700EC3C17 /* LaunchScreen.xib */; };
-		4A4426A41A82C0A700EC3C17 /* ScrollingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4426A31A82C0A700EC3C17 /* ScrollingTests.swift */; };
 		4A79CF291B04F46100656442 /* ScrollingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A79CF281B04F46100656442 /* ScrollingHelper.swift */; };
 		4AC4DCE41B1673570026E013 /* t_Bierstadt-Rocky Mountain landscape.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4AC4DCE31B1673570026E013 /* t_Bierstadt-Rocky Mountain landscape.jpg */; };
+		4ACB8E161C5FF1D6006B1E8B /* SampleViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACB8E151C5FF1D6006B1E8B /* SampleViews.swift */; };
 		4ADAA80D1C59541E00CA43D6 /* Swift Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADAA80C1C59541E00CA43D6 /* Swift Extensions.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		4A44269E1A82C0A700EC3C17 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4A44267D1A82C0A700EC3C17 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 4A4426841A82C0A700EC3C17;
-			remoteInfo = Scrolling;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		4A3E9D601B20C27D00C30786 /* leonidAfremov.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = leonidAfremov.jpg; sourceTree = "<group>"; };
 		4A4426851A82C0A700EC3C17 /* Scrolling.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scrolling.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A4426891A82C0A700EC3C17 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4A44268A1A82C0A700EC3C17 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		4A44268D1A82C0A700EC3C17 /* Scrolling.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Scrolling.xcdatamodel; sourceTree = "<group>"; };
 		4A44268F1A82C0A700EC3C17 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		4A4426921A82C0A700EC3C17 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4A4426941A82C0A700EC3C17 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		4A4426971A82C0A700EC3C17 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		4A44269D1A82C0A700EC3C17 /* ScrollingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScrollingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4A4426A21A82C0A700EC3C17 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4A4426A31A82C0A700EC3C17 /* ScrollingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollingTests.swift; sourceTree = "<group>"; };
 		4A79CF281B04F46100656442 /* ScrollingHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollingHelper.swift; sourceTree = "<group>"; };
 		4AC4DCE31B1673570026E013 /* t_Bierstadt-Rocky Mountain landscape.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "t_Bierstadt-Rocky Mountain landscape.jpg"; sourceTree = "<group>"; };
+		4ACB8E151C5FF1D6006B1E8B /* SampleViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleViews.swift; sourceTree = "<group>"; };
 		4ADAA80C1C59541E00CA43D6 /* Swift Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Swift Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		4A4426821A82C0A700EC3C17 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		4A44269A1A82C0A700EC3C17 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -70,7 +49,6 @@
 			isa = PBXGroup;
 			children = (
 				4A4426871A82C0A700EC3C17 /* Scrolling */,
-				4A4426A01A82C0A700EC3C17 /* ScrollingTests */,
 				4A4426861A82C0A700EC3C17 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -79,7 +57,6 @@
 			isa = PBXGroup;
 			children = (
 				4A4426851A82C0A700EC3C17 /* Scrolling.app */,
-				4A44269D1A82C0A700EC3C17 /* ScrollingTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -87,44 +64,27 @@
 		4A4426871A82C0A700EC3C17 /* Scrolling */ = {
 			isa = PBXGroup;
 			children = (
-				4AC4DCE31B1673570026E013 /* t_Bierstadt-Rocky Mountain landscape.jpg */,
-				4A3E9D601B20C27D00C30786 /* leonidAfremov.jpg */,
+				4ADEC0981C5FEA8200615285 /* Images */,
+				4A4426911A82C0A700EC3C17 /* Main.storyboard */,
 				4A44268A1A82C0A700EC3C17 /* AppDelegate.swift */,
 				4A44268F1A82C0A700EC3C17 /* ViewController.swift */,
+				4ACB8E151C5FF1D6006B1E8B /* SampleViews.swift */,
 				4A79CF281B04F46100656442 /* ScrollingHelper.swift */,
 				4ADAA80C1C59541E00CA43D6 /* Swift Extensions.swift */,
-				4A4426911A82C0A700EC3C17 /* Main.storyboard */,
 				4A4426941A82C0A700EC3C17 /* Images.xcassets */,
 				4A4426961A82C0A700EC3C17 /* LaunchScreen.xib */,
-				4A44268C1A82C0A700EC3C17 /* Scrolling.xcdatamodeld */,
-				4A4426881A82C0A700EC3C17 /* Supporting Files */,
+				4A4426891A82C0A700EC3C17 /* Info.plist */,
 			);
 			path = Scrolling;
 			sourceTree = "<group>";
 		};
-		4A4426881A82C0A700EC3C17 /* Supporting Files */ = {
+		4ADEC0981C5FEA8200615285 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				4A4426891A82C0A700EC3C17 /* Info.plist */,
+				4AC4DCE31B1673570026E013 /* t_Bierstadt-Rocky Mountain landscape.jpg */,
+				4A3E9D601B20C27D00C30786 /* leonidAfremov.jpg */,
 			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		4A4426A01A82C0A700EC3C17 /* ScrollingTests */ = {
-			isa = PBXGroup;
-			children = (
-				4A4426A31A82C0A700EC3C17 /* ScrollingTests.swift */,
-				4A4426A11A82C0A700EC3C17 /* Supporting Files */,
-			);
-			path = ScrollingTests;
-			sourceTree = "<group>";
-		};
-		4A4426A11A82C0A700EC3C17 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				4A4426A21A82C0A700EC3C17 /* Info.plist */,
-			);
-			name = "Supporting Files";
+			name = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -147,24 +107,6 @@
 			productReference = 4A4426851A82C0A700EC3C17 /* Scrolling.app */;
 			productType = "com.apple.product-type.application";
 		};
-		4A44269C1A82C0A700EC3C17 /* ScrollingTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 4A4426AA1A82C0A700EC3C17 /* Build configuration list for PBXNativeTarget "ScrollingTests" */;
-			buildPhases = (
-				4A4426991A82C0A700EC3C17 /* Sources */,
-				4A44269A1A82C0A700EC3C17 /* Frameworks */,
-				4A44269B1A82C0A700EC3C17 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				4A44269F1A82C0A700EC3C17 /* PBXTargetDependency */,
-			);
-			name = ScrollingTests;
-			productName = ScrollingTests;
-			productReference = 4A44269D1A82C0A700EC3C17 /* ScrollingTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -179,10 +121,6 @@
 					4A4426841A82C0A700EC3C17 = {
 						CreatedOnToolsVersion = 6.1.1;
 						DevelopmentTeam = N5W8253H8H;
-					};
-					4A44269C1A82C0A700EC3C17 = {
-						CreatedOnToolsVersion = 6.1.1;
-						TestTargetID = 4A4426841A82C0A700EC3C17;
 					};
 				};
 			};
@@ -200,7 +138,6 @@
 			projectRoot = "";
 			targets = (
 				4A4426841A82C0A700EC3C17 /* Scrolling */,
-				4A44269C1A82C0A700EC3C17 /* ScrollingTests */,
 			);
 		};
 /* End PBXProject section */
@@ -218,13 +155,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4A44269B1A82C0A700EC3C17 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -234,29 +164,13 @@
 			files = (
 				4A4426901A82C0A700EC3C17 /* ViewController.swift in Sources */,
 				4A44268B1A82C0A700EC3C17 /* AppDelegate.swift in Sources */,
-				4A44268E1A82C0A700EC3C17 /* Scrolling.xcdatamodeld in Sources */,
 				4ADAA80D1C59541E00CA43D6 /* Swift Extensions.swift in Sources */,
+				4ACB8E161C5FF1D6006B1E8B /* SampleViews.swift in Sources */,
 				4A79CF291B04F46100656442 /* ScrollingHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4A4426991A82C0A700EC3C17 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				4A4426A41A82C0A700EC3C17 /* ScrollingTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		4A44269F1A82C0A700EC3C17 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 4A4426841A82C0A700EC3C17 /* Scrolling */;
-			targetProxy = 4A44269E1A82C0A700EC3C17 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		4A4426911A82C0A700EC3C17 /* Main.storyboard */ = {
@@ -385,40 +299,6 @@
 			};
 			name = Release;
 		};
-		4A4426AB1A82C0A700EC3C17 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = ScrollingTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Scrolling.app/Scrolling";
-			};
-			name = Debug;
-		};
-		4A4426AC1A82C0A700EC3C17 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = ScrollingTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Scrolling.app/Scrolling";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -440,29 +320,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4A4426AA1A82C0A700EC3C17 /* Build configuration list for PBXNativeTarget "ScrollingTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				4A4426AB1A82C0A700EC3C17 /* Debug */,
-				4A4426AC1A82C0A700EC3C17 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		4A44268C1A82C0A700EC3C17 /* Scrolling.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				4A44268D1A82C0A700EC3C17 /* Scrolling.xcdatamodel */,
-			);
-			currentVersion = 4A44268D1A82C0A700EC3C17 /* Scrolling.xcdatamodel */;
-			path = Scrolling.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 4A44267D1A82C0A700EC3C17 /* Project object */;
 }
