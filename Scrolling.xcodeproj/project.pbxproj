@@ -16,6 +16,7 @@
 		4A79CF291B04F46100656442 /* ScrollingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A79CF281B04F46100656442 /* ScrollingHelper.swift */; };
 		4AC4DCE41B1673570026E013 /* t_Bierstadt-Rocky Mountain landscape.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4AC4DCE31B1673570026E013 /* t_Bierstadt-Rocky Mountain landscape.jpg */; };
 		4ACB8E161C5FF1D6006B1E8B /* SampleViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACB8E151C5FF1D6006B1E8B /* SampleViews.swift */; };
+		4ACB8E181C601AEF006B1E8B /* readme.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 4ACB8E171C601AEF006B1E8B /* readme.rtf */; };
 		4ADAA80D1C59541E00CA43D6 /* Swift Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADAA80C1C59541E00CA43D6 /* Swift Extensions.swift */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +32,7 @@
 		4A79CF281B04F46100656442 /* ScrollingHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollingHelper.swift; sourceTree = "<group>"; };
 		4AC4DCE31B1673570026E013 /* t_Bierstadt-Rocky Mountain landscape.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "t_Bierstadt-Rocky Mountain landscape.jpg"; sourceTree = "<group>"; };
 		4ACB8E151C5FF1D6006B1E8B /* SampleViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleViews.swift; sourceTree = "<group>"; };
+		4ACB8E171C601AEF006B1E8B /* readme.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = readme.rtf; sourceTree = "<group>"; };
 		4ADAA80C1C59541E00CA43D6 /* Swift Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Swift Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -71,6 +73,7 @@
 				4ACB8E151C5FF1D6006B1E8B /* SampleViews.swift */,
 				4A79CF281B04F46100656442 /* ScrollingHelper.swift */,
 				4ADAA80C1C59541E00CA43D6 /* Swift Extensions.swift */,
+				4ACB8E171C601AEF006B1E8B /* readme.rtf */,
 				4A4426941A82C0A700EC3C17 /* Images.xcassets */,
 				4A4426961A82C0A700EC3C17 /* LaunchScreen.xib */,
 				4A4426891A82C0A700EC3C17 /* Info.plist */,
@@ -147,6 +150,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4ACB8E181C601AEF006B1E8B /* readme.rtf in Resources */,
 				4A3E9D611B20C27D00C30786 /* leonidAfremov.jpg in Resources */,
 				4A4426931A82C0A700EC3C17 /* Main.storyboard in Resources */,
 				4AC4DCE41B1673570026E013 /* t_Bierstadt-Rocky Mountain landscape.jpg in Resources */,
