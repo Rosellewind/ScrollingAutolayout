@@ -150,8 +150,21 @@ extension ScrollingHelper {
 // MARK: Handle Rotation
 
 extension ScrollingHelper {
-    func animationForContentOffsetOnRotation(scrollViews: [UIScrollView]) -> (){
-        
+    
+    func prepareScrollViewsForTransitionToSize(scrollViews: [UIScrollView], coordinator: UIViewControllerTransitionCoordinator) {
+        // for all subviews that are UIScrollView, adjust offset
+        // interestingly, the scrollView.contentSize has the new value in the animateAlongsideTransition
+        for scrollView in scrollViews {
+            if scrollView.contentSize.width > 0 && scrollView.contentSize.height > 0 {
+                
+                let xRatio = scrollView.contentOffset.x / scrollView.contentSize.width
+                let yRatio = scrollView.contentOffset.y / scrollView.contentSize.height
+                
+                coordinator.animateAlongsideTransition({ (UIViewControllerTransitionCoordinatorContext) -> Void in
+                    scrollView.contentOffset = CGPoint(x: xRatio * scrollView.contentSize.width, y: yRatio * scrollView.contentSize.height)
+                    }, completion: nil)
+            }
+        }
     }
 }
 
