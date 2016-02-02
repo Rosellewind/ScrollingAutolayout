@@ -6,13 +6,14 @@
 //  Copyright (c) 2015 Roselle Tanner. All rights reserved.
 //
 
-// instructions to set-up a scrollView are at the bottom of the page
 
 import UIKit
 
 // MARK: Class ViewController
 
 class ViewController: UIViewController {
+    var scrollViews = [UIScrollView]()
+    var offsetRatios = [(x: CGFloat, y: CGFloat)]()
 
     @IBOutlet weak var scrollContainer1: UIView!
     @IBOutlet weak var scrollContainer2: UIView!
@@ -80,7 +81,40 @@ extension ViewController {
         scrollingHelper.setupScrollingForPages(self.scrollContainer6, pages: SampleViews.labelsForStrings(strings), direction: RSScrollingDirection.horizontal, pagingEnabled: true)
     }
 
+    // handles rotation
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
         scrollingHelper.prepareScrollViewsForTransitionToSize(self.view.scrollViews(), coordinator: coordinator)
     }
+    
+    /*
+    // prior to ios8, to handle rotation, instead of viewWillTransiionToSize() and scrollingHelper.prepareScrollViewsForTransitionToSize(), do the following:
+    // class properties
+    var scrollViews = [UIScrollView]()
+    var offsetRatios = [(x: CGFloat, y: CGFloat)]()
+    
+    // in viewDidLoad
+    scrollViews = self.view.scrollViews()
+    
+    // save the ratio of offset/width before rotating
+    override func willRotateToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
+        offsetRatios = []
+        for scrollView in scrollViews {
+            if scrollView.contentSize.width > 0 && scrollView.contentSize.height > 0 {
+                let xRatio = scrollView.contentOffset.x / scrollView.contentSize.width
+                let yRatio = scrollView.contentOffset.y / scrollView.contentSize.height
+                offsetRatios.append((xRatio, yRatio))
+            } else {
+                offsetRatios.append((0.0, 0.0))
+            }
+        }
+    }
+    
+    // set the offset to ratio * width to animate to
+    override func willAnimateRotationToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
+        for i in 0..<scrollViews.count {
+            let scrollView = scrollViews[i]
+            scrollView.contentOffset = CGPoint(x: offsetRatios[i].x * scrollView.contentSize.width, y: offsetRatios[i].y * scrollView.contentSize.height)
+        }
+    }
+*/
 }

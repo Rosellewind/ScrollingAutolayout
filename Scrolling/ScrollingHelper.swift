@@ -6,10 +6,6 @@
 //  Copyright (c) 2015 Roselle Tanner. All rights reserved.
 //
 
-// ************* if changes are made, update Scrolling project *************
-// update addConstraint
-                //autorotation, where it left off
-
 
 import Foundation
 import UIKit
@@ -168,45 +164,3 @@ extension ScrollingHelper {
     }
 }
 
-
-
-// MARK: Instructions how to code dynamic layout scrolling
-/*
-
-1. add UIView named scrollContainer
-a. bind all 4 sides appropriately where you want them
-
-2. add UIScrollView named scrollView as subview to scrollContainer
-a. bind all sides of scrollView to scrollContainer, (trailing, leading, bottom, top spaces = 0)
-
-3. add UIView named contentView as subview to scrollView
-a. bind all sides of contentView to scrollview, (trailing, leading, bottom, top spaces = 0)
-
-4. if desired, add subviews to contentView (your content) (see below for programmatically added)
-a. bind subviews how you want them in the 4 directions
-b. set width and height for each
-i. if scrolling all directions:
-can have space in-between subviews or a freeform layout
-ii. if scrolling vertically or horizontally
-line them up one after another appropriately with H: or V:
-
-
-visual format for vertically scrolling (swap V and H for horizontally scrolling:
-V:|[scrollView]|
-H:|[scrollView]|
-
-V:|[contentView]|
-H:|[contentView]|
-
-V:|[page1(==scrollContainer)][page2(==scrollContainer)][page3(==scrollContainer)]|
-H:|[page1(==scrollContainer)]|
-H:|[page2(==scrollContainer)]|
-H:|[page3(==scrollContainer)]|
-
-(if stacking pages on one another with varying height(ex. for vertical scrolling), make sure to set the height or auto height and omit (==scrollContainer) from V:)
-
-resources:
-http://stackoverflow.com/questions/13499467/uiscrollview-doesnt-use-autolayout-constraints
-http://www.apeth.com/iOSBook/ch20.html
-https://developer.apple.com/library/ios/releasenotes/General/RN-iOSSDK-6_0/index.html
-*/
