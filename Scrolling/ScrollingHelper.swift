@@ -157,7 +157,21 @@ extension ScrollingHelper {
                 let yRatio = scrollView.contentOffset.y / scrollView.contentSize.height
                 
                 coordinator.animateAlongsideTransition({ (UIViewControllerTransitionCoordinatorContext) -> Void in
-                    scrollView.contentOffset = CGPoint(x: xRatio * scrollView.contentSize.width, y: yRatio * scrollView.contentSize.height)
+                    
+                    // adjust if the contentOffset shows beyond the end on the contentSize
+                    var x = xRatio * scrollView.contentSize.width
+                    var y = yRatio * scrollView.contentSize.height
+                    let beyondWidth = x + scrollView.bounds.width > scrollView.contentSize.width
+                    let beyondHeight = y + scrollView.bounds.height > scrollView.contentSize.height
+                    if beyondWidth {
+                        x = scrollView.contentSize.width - scrollView.bounds.width
+                    }
+                    if beyondHeight {
+                        y = scrollView.contentSize.height - scrollView.bounds.height
+                    }
+                    
+                    // set the contentOffset
+                    scrollView.contentOffset = CGPoint(x: x, y: y)
                     }, completion: nil)
             }
         }
